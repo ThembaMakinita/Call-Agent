@@ -2,18 +2,35 @@ package com.jtm.assessment.callcentre.database.entity;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Data
+@Table(name = "Team")
 public class Team {
 
     @Id
     @GeneratedValue
     private Long id;
     private String name;
-    //private Manager manager;
+    @ManyToMany
+    @JoinTable(
+            name = "Team_Managers",
+            joinColumns = @JoinColumn(name = "team_id"),
+            inverseJoinColumns = @JoinColumn(name = "manager_id")
+    )
+    private List<Manager> managers = new ArrayList<>();
+
+    public boolean addManager(Manager manager){
+       if(managers.size() < 2){
+            managers.add(manager);
+           return true;
+       }
+       else{
+           return false;
+       }
+    }
 
 }
