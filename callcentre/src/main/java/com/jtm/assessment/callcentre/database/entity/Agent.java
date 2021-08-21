@@ -16,6 +16,6 @@ public class Agent {
     private String idNumber;
     @ManyToOne
     private Team team;
-    //@ManyToOne
-   // private Manager manager;
+    @ManyToOne
+    private Manager manager;
 }

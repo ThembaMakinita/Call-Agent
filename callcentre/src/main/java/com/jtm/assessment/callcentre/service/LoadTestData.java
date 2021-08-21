@@ -44,11 +44,11 @@ public class LoadTestData {
 
         teamRepository.saveAll(teams);
 
-        createAgent("Bruce", "Banner", "1011125190081", team1);
-        createAgent("Tony", "Stark", "6912115191083", team1);
-        createAgent("Peter", "Parker", "7801115190084", team1);
-        createAgent("Bruce", "Wayne", "6511185190085", team2);
-        createAgent("Clark", "Kent", "5905115190086",team2);
+        createAgent("Bruce", "Banner", "1011125190081", team1,manager1);
+        createAgent("Tony", "Stark", "6912115191083", team1,manager1);
+        createAgent("Peter", "Parker", "7801115190084", team1,manager1);
+        createAgent("Bruce", "Wayne", "6511185190085", team2,manager1);
+        createAgent("Clark", "Kent", "5905115190086",team3,manager2);
     }
 
     private Team createTeam(String name) {
@@ -57,12 +57,13 @@ public class LoadTestData {
         return t;
     }
 
-    private Agent createAgent(String firstName, String lastName, String idNumber, Team team) {
+    private Agent createAgent(String firstName, String lastName, String idNumber, Team team,Manager manager) {
         Agent a = new Agent();
         a.setFirstName(firstName);
         a.setLastName(lastName);
         a.setIdNumber(idNumber);
         a.setTeam(team);
+        a.setManager(manager);
         return agentRepository.save(a);
     }
 
@@ -72,7 +73,6 @@ public class LoadTestData {
         manager.setFirstName(firstName);
         manager.setLastName(lastName);
         manager.setIdNumber(idNumber);
-        //manager.addMultipleTeams(teams);
         return managerRepository.save(manager);
     }
 }
