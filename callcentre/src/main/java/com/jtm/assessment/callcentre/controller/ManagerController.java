@@ -39,11 +39,12 @@ public class ManagerController {
                        }
                        else{
                            //unable to add manager to that team.
+                          return new ResponseEntity<>("Unable to create Manager, Allocated team does not have the capacity", HttpStatus.BAD_REQUEST);
                        }
                    }
                 }
                 return new ResponseEntity(managerRepository.save(manager), HttpStatus.OK);
             }
-        return new ResponseEntity<>("Unable to create Team", HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>("Unable to create Manager", HttpStatus.BAD_REQUEST);
     }
 }

@@ -3,6 +3,7 @@ package com.jtm.assessment.callcentre.database.repo;
 import com.jtm.assessment.callcentre.database.entity.Agent;
 import com.jtm.assessment.callcentre.database.model.AgentPage;
 import com.jtm.assessment.callcentre.database.model.AgentSearchCriteria;
+import org.apache.catalina.valves.rewrite.InternalRewriteMap;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Repository;
 
@@ -55,7 +56,7 @@ public class AgentCriteriaRepository {
         List<Predicate> predicates = new ArrayList<>();
 
         if(Objects.nonNull(agentSearchCriteria.getFirstName())){
-            predicates.add(criteriaBuilder.like(agentRoot.get("firstName"),"%" + agentSearchCriteria.getFirstName()+ "%" ));
+            predicates.add(criteriaBuilder.like( agentRoot.get("firstName"),"%" + agentSearchCriteria.getFirstName()+ "%" ));
         }
         if(Objects.nonNull(agentSearchCriteria.getLastName())){
             predicates.add(criteriaBuilder.like(agentRoot.get("lastName"),"%" + agentSearchCriteria.getLastName()+ "%" ));
