@@ -29,7 +29,14 @@ public class AgentController {
     @GetMapping("/Basic/agents")
     public ResponseEntity getAllAgents(){
         List<Agent> agents = agentRepository.findAll();
+        if (agents != null)
         return new ResponseEntity(agents, HttpStatus.OK);
+
+        if (agents == null)
+            return new ResponseEntity<>("No Results Found For Agents", HttpStatus.NOT_FOUND);
+
+        return new ResponseEntity<>("Exception Occurred: Unable to find the list of agents", HttpStatus.BAD_REQUEST);
+
     }
 
     @GetMapping("/Basic/agent/{agentId}")
@@ -37,7 +44,11 @@ public class AgentController {
         Optional<Agent> agent = agentRepository.findById(id);
         if (agent != null)
         return new ResponseEntity(agent, HttpStatus.OK);
-        return new ResponseEntity<>("No Results Found For Agents", HttpStatus.NOT_FOUND);
+
+        if(agent == null)
+        return new ResponseEntity<>("No Results Found For Agent", HttpStatus.NOT_FOUND);
+
+        return new ResponseEntity<>("Exception Occurred: Unable to find the list of agents", HttpStatus.BAD_REQUEST);
     }
 
     @PostMapping("/Basic/agent")
