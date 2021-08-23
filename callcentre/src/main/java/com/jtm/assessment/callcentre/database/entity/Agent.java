@@ -1,6 +1,8 @@
 package com.jtm.assessment.callcentre.database.entity;
 
+import lombok.AccessLevel;
 import lombok.Data;
+import lombok.Setter;
 
 import javax.persistence.*;
 
@@ -10,6 +12,7 @@ import javax.persistence.*;
 public class Agent {
     @Id
     @GeneratedValue
+    @Setter(AccessLevel.NONE)
     private Long id;
     private String firstName;
     private String lastName;
